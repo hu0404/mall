@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mall-pms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 312210331Hwt
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 124.222.167.36:8848
+    alicloud:
+      access-key: LTAI5tFZV5RXJ1Q4nLfCT4bY
+      secret-key: eDzKXVkERFpCSTStdhZOUqXkyKfJv5
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+        bucket: huwentao-mall
+      sms:
+        host: https://dfsns.market.alicloudapi.com
+        path: /data/send_sms
+        method: POST
+        appCode: c28fe45c19ea4d16a8197264ebcc4ffb
+  application:
+      name: thirdParty
+server:
+  port: 8090
+  servlet:
+    context-path: /thirdParty

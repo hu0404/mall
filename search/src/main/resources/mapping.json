@@ -1,0 +1,74 @@
+# ES 商品Product的映射Mappings
+PUT product
+{
+"query": {
+"bool": {
+"must": [
+{
+"match": {
+"subTitle": "小米"
+}
+}
+],
+"filter": [
+{
+"term": {
+"catalogId": "225"
+}
+},
+{
+"terms": {
+"brandId": [
+"2"
+]
+}
+},
+{
+"range": {
+"skuPrice": {
+"gte": 0,
+"lte": 12000
+}
+}
+},
+{
+"nested": {
+"path": "attrs",
+"query": {
+"bool": {
+"must": [
+{
+"term": {
+"attrs.attrId": {
+"value": "3"
+}
+}
+},
+{
+"terms": {
+"attrs.attrValue": [
+"2021"
+]
+}
+}
+]
+}
+}
+}
+}
+]
+}
+},"sort": [
+{
+"skuPrice": {
+"order": "desc"
+}
+}
+],"from": 0
+,"size": 20
+,"highlight": {
+"fields": {"subTitle": {}}
+,"pre_tags": "<b{\n\t\"mappings\": {\n\t\t\"properties\": {\n\t\t\t\"skuId\": {\n\t\t\t\t\"type\": \"long\"\n\t\t\t},\n\t\t\t\"spuId\": {\n\t\t\t\t\"type\": \"keyword\"\n\t\t\t},\n\t\t\t\"skuTitle\": {\n\t\t\t\t\"type\": \"text\",\n\t\t\t\t\"analyzer\": \"ik_smart\"\n\t\t\t},\n\t\t\t\"skuPrice\": {\n\t\t\t\t\"type\": \"keyword\"\n\t\t\t},\n\t\t\t\"skuImg\": {\n\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\"index\": \"false\",\n\t\t\t\t\"doc_values\": \"false\"\n\t\t\t},\n\t\t\t\"saleCount\": {\n\t\t\t\t\"type\": \"long\"\n\t\t\t},\n\t\t\t\"hasStock\": {\n\t\t\t\t\"type\": \"boolean\"\n\t\t\t},\n\t\t\t\"hotScore\": {\n\t\t\t\t\"type\": \"long\"\n\t\t\t},\n\t\t\t\"brandId\": {\n\t\t\t\t\"type\": \"long\"\n\t\t\t},\n\t\t\t\"catalogId\": {\n\t\t\t\t\"type\": \"long\"\n\t\t\t},\n\t\t\t\"brandName\": {\n\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\"index\": \"false\",\n\t\t\t\t\"doc_values\": \"false\"\n\t\t\t},\n\t\t\t\"brandImg\": {\n\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\"index\": \"false\",\n\t\t\t\t\"doc_values\": \"false\"\n\t\t\t},\n\t\t\t\"catalogName\": {\n\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\"index\": \"false\",\n\t\t\t\t\"doc_values\": \"false\"\n\t\t\t},\n\t\t\t\"attrs\": {\n\t\t\t\t\"type\": \"nested\",\n\t\t\t\t\"properties\": {\n\t\t\t\t\t\"attrId\": {\n\t\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t\t},\n\t\t\t\t\t\"attrName\": {\n\t\t\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\t\t\"index\": \"false\",\n\t\t\t\t\t\t\"doc_values\": \"false\"\n\t\t\t\t\t},\n\t\t\t\t\t\"attrValue\": {\n\t\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n} style='color:red'>"
+,"post_tags": "<b>"
+}
+}

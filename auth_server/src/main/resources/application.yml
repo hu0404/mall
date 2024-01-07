@@ -1,0 +1,24 @@
+server:
+  port: 30000
+
+# 数据库的连接新
+spring:
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 124.222.167.36:8848
+  redis:
+    host: 124.222.167.36
+    port: 6379
+  application:
+    name: authServer
+#    设置全局服务器返回的日期格式
+  jackson:
+    date-format: yyyy-MM-dd HH-mm-ss
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+
